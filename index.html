@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arogya Grains | Sathu Maavu Health Mix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #263d32;
+    --green-2: #334f42;
+    --gold: #d9a441;
+    --cream: #faf6ef;
+    --cream-2: #f5ebd6;
+    --border: #e8dcbf;
+    --text: #334155;
+    --muted: #64748b;
+    --body: #475569;
+    --white: #ffffff;
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--green);
+    background: var(--cream);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Poppins', 'Inter', sans-serif; color: var(--green); }
+  a { color: inherit; text-decoration: none; }
+  button, input, select, textarea { font: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; width: 100%; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--green);
+    color: var(--cream);
+    text-align: center;
+    font-size: 13px;
+    height: 33px;
+    line-height: 33px;
+    letter-spacing: 0.2px;
+  }
+  .announce strong { color: var(--gold); }
+
+  /* Sticky nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 246, 239, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    gap: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--gold); color: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .brand-name { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 22px; line-height: 1.1; }
+  .brand-sub { font-size: 11px; color: var(--gold); letter-spacing: 1.2px; font-weight: 600; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--text); }
+  .nav-links a:hover { color: var(--green); }
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 16px; position: relative;
+  }
+  .cart-badge {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--gold); color: var(--green);
+    font-size: 10px; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .signin {
+    height: 36px; padding: 0 14px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--white);
+    font-size: 13px; font-weight: 600; color: var(--green); cursor: pointer;
+  }
+  .menu-toggle { display: none; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 16px 32px; border-radius: 12px; border: none; cursor: pointer;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px;
+    transition: transform .15s ease, box-shadow .2s ease, opacity .2s;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+  .btn-dark { background: var(--green); color: var(--gold); }
+  .btn-gold { background: var(--gold); color: var(--green); }
+  .btn-light { background: rgba(255,255,255,0.8); color: var(--green); border: 1px solid var(--border); box-shadow: none; font-weight: 600; }
+
+  /* Hero */
+  .hero { padding: 80px 0; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: center;
+  }
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(217,164,65,0.2); border: 1px solid rgba(217,164,65,0.4);
+    border-radius: 9999px; padding: 7px 17px; font-size: 14px; font-weight: 600; color: var(--green);
+  }
+  .hero h1 {
+    font-size: 60px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin: 28px 0 0;
+  }
+  .hero p.lead {
+    font-size: 18px; color: #334155; line-height: 1.55; margin-top: 28px; max-width: 576px;
+  }
+  .rating-row { display: flex; align-items: center; gap: 12px; margin-top: 28px; font-size: 14px; }
+  .stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; }
+  .hero-ctas { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
+  .hero-ctas .btn { padding: 16px 25px; }
+  .chips {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .chip {
+    background: rgba(245,235,214,0.6); border-radius: 8px; padding: 10px;
+    display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; color: var(--green);
+  }
+  .chip span.ico { font-size: 18px; }
+
+  .hero-media { position: relative; }
+  .hero-media .aura {
+    position: absolute; inset: -16px; border-radius: 24px;
+    background: rgba(217,164,65,0.15); filter: blur(40px); z-index: 0;
+  }
+  .frame {
+    position: relative; z-index: 1; background: var(--white);
+    border: 4px solid var(--white); border-radius: 24px; padding: 4px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); overflow: hidden;
+  }
+  .img-ph {
+    width: 100%; aspect-ratio: 4 / 3;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f5ebd6 0%, #e8dcbf 55%, #d9c9a3 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 24px; color: var(--green); gap: 8px;
+  }
+  .img-ph .ph-icon { font-size: 44px; }
+  .img-ph small { font-size: 12px; color: var(--muted); max-width: 320px; }
+  .float-price {
+    position: absolute; top: 20px; right: 20px; z-index: 2;
+    background: rgba(38,61,50,0.95); border: 1px solid rgba(217,164,65,0.3);
+    border-radius: 16px; padding: 9px 17px; color: #fff;
+  }
+  .float-price .fp-top { color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+  .float-price .fp-val { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 18px; }
+  .float-price .fp-val small { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 12px; opacity: .8; }
+  .float-fact {
+    position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 2;
+    background: rgba(245,235,214,0.95); border: 1px solid #fff; border-radius: 16px;
+    padding: 13px; display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; font-weight: 700; color: var(--green);
+  }
+  .float-fact .dot { width: 10px; height: 10px; background: #059669; border-radius: 50%; display: inline-block; margin-right: 8px; }
+  .float-fact .tag { background: rgba(217,164,65,0.2); border-radius: 6px; padding: 4px 10px; }
+
+  /* Section helpers */
+  section.block { padding: 96px 0; }
+  .sec-head { text-align: center; max-width: 768px; margin: 0 auto 56px; display: flex; flex-direction: column; gap: 11px; align-items: center; }
+  .eyebrow {
+    display: inline-block; border-radius: 9999px; padding: 4px 14px;
+    font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    background: var(--green); color: var(--gold);
+  }
+  .eyebrow.light { background: rgba(217,164,65,0.3); color: var(--green); letter-spacing: .6px; padding: 4px 12px; }
+  .sec-head h2 { font-size: 36px; font-weight: 800; line-height: 1.15; }
+  .sec-head p { color: var(--body); font-size: 16px; line-height: 1.6; }
+
+  /* Heritage */
+  #ingredients { background: rgba(255,255,255,0.8); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .heritage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .spec-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .spec {
+    background: var(--cream); border: 1px solid var(--border); border-radius: 12px;
+    padding: 13px; text-align: center;
+  }
+  .spec .k { font-size: 12px; color: var(--muted); }
+  .spec .v { font-weight: 700; font-size: 16px; color: var(--green); }
+  .sub-h { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+  .ing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .ing {
+    background: var(--cream); border: 1px solid rgba(232,220,191,0.7); border-radius: 12px; padding: 13px;
+  }
+  .ing b { display: block; font-size: 14px; color: var(--green); }
+  .ing span { font-size: 12px; color: var(--muted); }
+  .steps { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+  .step {
+    background: var(--cream); border: 1px solid var(--border); border-radius: 12px;
+    padding: 15px; display: flex; gap: 12px; align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--green); color: var(--gold);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px;
+  }
+  .step b { display: block; font-size: 14px; color: var(--green); }
+  .step p { font-size: 14px; color: var(--body); }
+
+  /* Product */
+  #product { background: var(--cream); }
+  .product-head { max-width: 672px; margin: 0 auto 48px; }
+  .product-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+    display: grid; grid-template-columns: 5fr 7fr; overflow: hidden;
+  }
+  .product-media {
+    background: rgba(245,235,214,0.4); padding: 32px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-media .img-ph { aspect-ratio: 4 / 3.3; }
+  .sale-tag {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--gold); color: var(--green); font-weight: 700; font-size: 12px;
+    padding: 4px 12px; border-radius: 6px; text-transform: uppercase;
+  }
+  .product-info { padding: 40px; display: flex; flex-direction: column; gap: 15px; }
+  .info-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .sku { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 1.2px; text-transform: uppercase; }
+  .stock {
+    background: #ecfdf5; color: #047857; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 9999px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .stock::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
+  .product-info h3 { font-size: 30px; font-weight: 800; line-height: 1.2; }
+  .rating-small { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .rating-small .stars { font-size: 14px; }
+  .rating-small b { color: var(--green); }
+  .rating-small span { color: var(--muted); }
+  .price-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .price-now { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 36px; color: var(--green); }
+  .price-old { font-size: 18px; color: #94a3b8; text-decoration: line-through; padding-left: 4px; }
+  .save-tag { background: var(--green); color: var(--gold); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 4px; }
+  .tax-note { font-size: 12px; color: var(--muted); }
+  .desc { font-size: 14px; color: var(--body); line-height: 1.6; }
+  .qty-label { font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: .6px; text-transform: uppercase; margin-top: 8px; }
+  .qty-row { display: flex; align-items: center; gap: 16px; }
+  .qty {
+    display: inline-flex; align-items: center; background: var(--cream);
+    border: 1px solid rgba(38,61,50,0.3); border-radius: 12px; overflow: hidden;
+  }
+  .qty button {
+    width: 40px; height: 40px; border: none; background: transparent;
+    font-size: 18px; font-weight: 700; color: var(--green); cursor: pointer;
+  }
+  .qty span { width: 48px; text-align: center; font-weight: 700; color: var(--green); }
+  .qty-hint { font-size: 12px; color: var(--muted); }
+  .cta-row { display: flex; gap: 12px; margin-top: 24px; }
+  .cta-row .btn { flex: 1; padding: 16px 24px; font-size: 14px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); }
+  .perks {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    border-top: 1px solid #f1f5f9; padding-top: 14px; margin-top: 16px;
+  }
+  .perk { text-align: center; font-size: 11px; font-weight: 500; color: var(--body); }
+  .perk span { display: block; font-size: 14px; margin-bottom: 2px; }
+  .toast {
+    position: fixed; bottom: 96px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--green); color: #fff; padding: 12px 20px; border-radius: 12px;
+    font-size: 14px; opacity: 0; pointer-events: none; transition: all .3s ease; z-index: 100;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Checkout */
+  #checkout { background: var(--white); border-top: 1px solid var(--border); }
+  .checkout-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 32px; align-items: start; }
+  .panel {
+    border: 1px solid var(--border); border-radius: 24px; padding: 33px;
+  }
+  .panel.left { background: rgba(250,246,239,0.6); }
+  .panel.right { background: rgba(245,235,214,0.7); }
+  .panel-title {
+    display: flex; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif;
+    font-weight: 700; font-size: 20px; color: var(--green);
+    padding-bottom: 13px; border-bottom: 1px solid var(--border); margin-bottom: 24px;
+  }
+  .panel-title.sm { font-size: 18px; margin: 0 0 14px; padding-bottom: 13px; }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { font-size: 12px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: .3px; }
+  .field input {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 10px 13px; font-size: 14px; color: var(--green); outline: none; width: 100%;
+  }
+  .field input::placeholder { color: #6b7280; }
+  .field input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(217,164,65,0.2); }
+  .pay-methods { margin-top: 32px; }
+  .pay-opt {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 15px; display: flex; align-items: center; gap: 12px; cursor: pointer; margin-bottom: 8px;
+  }
+  .pay-opt input { width: 16px; height: 16px; accent-color: var(--green); }
+  .pay-opt .po-title { font-weight: 700; font-size: 14px; color: var(--green); }
+  .pay-opt .po-sub { font-size: 12px; color: var(--muted); }
+  .pay-opt .fastest {
+    margin-left: auto; background: #ecfdf5; color: #047857; font-size: 12px; font-weight: 600;
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .sum-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; padding: 8px 0; color: var(--body); }
+  .sum-row b { color: var(--green); }
+  .sum-row .tiny {
+    background: #e2e8f0; color: #334155; font-size: 10px; padding: 0 6px; border-radius: 4px; margin-left: 6px;
+  }
+  .coupon-label { font-size: 12px; font-weight: 700; color: var(--text); text-transform: uppercase; margin: 16px 0 8px; }
+  .coupon-row { display: flex; gap: 8px; }
+  .coupon-row input {
+    flex: 1; background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 10px 13px; font-size: 14px; text-transform: uppercase; color: var(--green); outline: none;
+  }
+  .coupon-row button {
+    background: var(--green); color: var(--gold); border: none; border-radius: 12px;
+    padding: 0 16px; font-size: 12px; font-weight: 700; cursor: pointer;
+  }
+  .free-banner {
+    background: rgba(217,164,65,0.15); border: 1px solid rgba(217,164,65,0.3);
+    border-radius: 12px; padding: 13px; margin-top: 16px; font-size: 12px; font-weight: 600; color: var(--green);
+  }
+  .free-banner .row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .bar { height: 6px; background: var(--border); border-radius: 9999px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 100%; background: var(--gold); }
+  .total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px;
+    font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--green);
+  }
+  .total .t1 { font-size: 18px; }
+  .total .t2 { font-size: 30px; }
+  .pay-btn {
+    width: 100%; margin-top: 16px; background: var(--green); color: var(--gold);
+    border: none; border-radius: 12px; padding: 16px; font-family: 'Poppins', sans-serif;
+    font-weight: 700; font-size: 16px; letter-spacing: .4px; cursor: pointer;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+  }
+  .pay-btn:disabled { opacity: .6; cursor: not-allowed; }
+  .status { margin-top: 12px; font-size: 14px; font-weight: 600; text-align: center; min-height: 20px; }
+  .status.ok { color: #047857; }
+  .status.err { color: #b91c1c; }
+  .secure { text-align: center; font-size: 11px; color: var(--muted); margin-top: 12px; }
+
+  /* Reviews */
+  #reviews { background: var(--cream); border-top: 1px solid var(--border); }
+  .stats { display: flex; gap: 24px; justify-content: center; max-width: 896px; margin: 0 auto 40px; }
+  .stat {
+    background: var(--white); border: 1px solid var(--border); border-radius: 16px;
+    padding: 25px; flex: 1; text-align: center; box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  }
+  .stat .big { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 36px; color: var(--green); line-height: 1.1; }
+  .stat .lbl { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .stat .gold-lbl { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: .6px; text-transform: uppercase; margin-top: 4px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .review {
+    background: var(--white); border: 1px solid var(--border); border-radius: 16px;
+    padding: 25px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  }
+  .review-top { display: flex; justify-content: space-between; align-items: center; }
+  .review-top .stars { font-size: 14px; }
+  .verified { background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 9999px; }
+  .review p.quote { font-style: italic; font-size: 14px; color: var(--text); line-height: 1.6; }
+  .reviewer { display: flex; align-items: center; gap: 12px; border-top: 1px solid #f1f5f9; padding-top: 17px; }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--green); color: var(--gold);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
+  }
+  .reviewer b { display: block; font-size: 14px; color: var(--green); }
+  .reviewer span { font-size: 12px; color: var(--muted); }
+  .review-form {
+    background: var(--white); border: 1px solid var(--border); border-radius: 24px;
+    padding: 41px 33px 33px; max-width: 672px; margin: 40px auto 0;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  }
+  .review-form h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .review-form .hint { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .review-form .fields { gap: 16px; }
+  .review-form label { font-size: 12px; font-weight: 600; color: var(--text); display: block; margin-bottom: 4px; }
+  .review-form input, .review-form textarea {
+    width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 10px 13px; font-size: 14px; color: var(--green); outline: none;
+  }
+  .review-form textarea { height: 98px; resize: vertical; }
+  .stars-input { color: var(--gold); font-size: 20px; letter-spacing: 4px; margin-top: 4px; }
+  .review-form .btn { margin-top: 16px; padding: 12px 24px; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; box-shadow: none; }
+
+  /* FAQ */
+  #faq { background: var(--white); border-top: 1px solid var(--border); }
+  .faq-wrap { max-width: 896px; margin: 0 auto; }
+  .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 48px; }
+  .faq-item { background: var(--cream); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .faq-q {
+    width: 100%; background: transparent; border: none; cursor: pointer; text-align: left;
+    display: flex; justify-content: space-between; align-items: center; padding: 20px;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; color: var(--green);
+  }
+  .faq-q .plus { color: var(--gold); font-size: 20px; transition: transform .2s; }
+  .faq-item.open .plus { transform: rotate(45deg); }
+  .faq-a { display: none; padding: 0 20px 20px; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* Footer */
+  footer { background: var(--green); color: #fff; border-top: 1px solid var(--green-2); padding: 65px 0 48px; }
+  .foot-grid {
+    display: grid; grid-template-columns: 5fr 3fr 4fr; gap: 40px;
+    border-bottom: 1px solid var(--green-2); padding-bottom: 49px;
+  }
+  .foot-brand { display: flex; align-items: center; gap: 12px; }
+  .foot-brand .brand-mark { width: 40px; height: 40px; font-size: 16px; box-shadow: none; }
+  .foot-brand .brand-name { color: #fff; font-size: 24px; }
+  .foot-brand .brand-sub { font-size: 12px; letter-spacing: .6px; }
+  .foot-bio { font-size: 14px; color: rgba(250,246,239,0.8); line-height: 1.6; margin-top: 15px; max-width: 384px; }
+  .fssai { font-size: 12px; color: rgba(217,164,65,0.9); font-weight: 500; margin-top: 12px; }
+  .foot-col h4 { color: var(--gold); font-size: 16px; letter-spacing: .8px; text-transform: uppercase; margin-bottom: 12px; font-weight: 700; }
+  .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .foot-col li a, .foot-col li { font-size: 14px; color: rgba(250,246,239,0.8); }
+  .foot-col li a:hover { color: var(--gold); }
+  .foot-col .addr { font-size: 12px; color: rgba(250,246,239,0.7); line-height: 1.6; margin-top: 8px; }
+  .social { display: flex; gap: 12px; margin-top: 12px; }
+  .social a {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--green-2);
+    display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--gold);
+  }
+  .legal {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    padding-top: 32px; font-size: 12px; color: rgba(250,246,239,0.6);
+  }
+  .legal nav { display: flex; gap: 24px; flex-wrap: wrap; }
+  .legal a:hover { color: var(--gold); }
+
+  /* Floating WhatsApp */
+  .wa-float {
+    position: fixed; right: 24px; bottom: 24px; z-index: 60;
+    background: #25d366; color: #fff; border-radius: 9999px;
+    padding: 14px 20px 14px 16px; display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
+  }
+  .wa-float .wa-ico { font-size: 22px; }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: flex; }
+    .hero h1 { font-size: 50px; }
+  }
+  @media (max-width: 960px) {
+    .hero-grid, .heritage-grid, .checkout-grid, .product-card { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .stats { flex-direction: column; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .sec-head h2 { font-size: 30px; }
+    .hero h1 { font-size: 44px; }
+    .hero { padding: 48px 0; }
+    section.block { padding: 64px 0; }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 0 18px; }
+    .hero h1 { font-size: 36px; letter-spacing: -1px; }
+    .chips { grid-template-columns: 1fr; }
+    .ing-grid { grid-template-columns: 1fr 1fr; }
+    .spec-strip { grid-template-columns: 1fr; }
+    .fields { grid-template-columns: 1fr; }
+    .cta-row { flex-direction: column; }
+    .perks { grid-template-columns: 1fr; }
+    .product-info { padding: 24px; }
+    .panel { padding: 22px; }
+    .review-form { padding: 28px 20px; }
+    .nav-actions .signin { display: none; }
+    .wa-float span.wa-text { display: none; }
+    .wa-float { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement bar -->
+<div class="announce">
+  🚚 <strong>FREE delivery</strong> on all orders this week! Use code <strong>HEALTH10</strong> at checkout.
+</div>
+
+<!-- Sticky navigation -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <div class="brand-mark">🌾</div>
+      <div>
+        <div class="brand-name">Arogya Grains</div>
+        <div class="brand-sub">Traditional Health</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About Us</a>
+      <a href="#product">Our Product</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="signin" type="button">👤 Sign In</button>
+      <button class="icon-btn" type="button" aria-label="Shopping cart">🛒<span class="cart-badge" id="cartCount">0</span></button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge-pill">🌿 100% Natural Ayurvedic Sathu Maavu</span>
+        <h1>Good Health Begins<br>With What You Eat.</h1>
+        <p class="lead">Discover the pure goodness of 18 traditional grains, millets, nuts, and spices slowly roasted and stone-ground into one wholesome Health Mix. A simple, deeply nourishing addition to your family's everyday morning routine.</p>
+        <div class="rating-row">
+          <span class="stars">★★★★★</span>
+          <b>4.9 / 5.0</b> <span style="color:var(--body)">by 2,400+ Verified Indian Families</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="#product" class="btn btn-dark">Shop Now — ₹140 <span>→</span></a>
+          <a href="#ingredients" class="btn btn-light">Explore Ingredients</a>
+        </div>
+        <div class="chips">
+          <div class="chip"><span class="ico">🌾</span>18 Wholesome Ingredients</div>
+          <div class="chip"><span class="ico">🏺</span>Traditional Stone Grinding</div>
+          <div class="chip"><span class="ico">⏱️</span>Cooks Ready in 3 Minutes</div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="aura"></div>
+        <div class="frame">
+          <div class="img-ph">
+            <div class="ph-icon">🥣</div>
+            <strong>Sathu Maavu pouch beside a bowl of golden porridge</strong>
+            <small>Replace this placeholder with your product photo (see note below).</small>
+          </div>
+          <div class="float-price">
+            <div class="fp-top">Fresh Batch</div>
+            <div class="fp-val">₹140 <small>(500g)</small></div>
+          </div>
+          <div class="float-fact">
+            <span><span class="dot"></span>14g Plant Protein / 100g</span>
+            <span class="tag">Zero Added Sugar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERITAGE & INGREDIENTS -->
+  <section class="block" id="ingredients">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow light">Pure South Indian Tradition</span>
+        <h2>A Wholesome Blend for Everyday Goodness</h2>
+        <p>Handcrafted with love from time-tested South Indian Sathu Maavu recipes passed through generations. We source whole native grains, sprout them for maximum bio-availability, slow roast them to aromatic perfection, and pulverize them gently.</p>
+      </div>
+
+      <div class="heritage-grid">
+        <div>
+          <div class="img-ph" style="aspect-ratio: 1 / 1; border-radius: 16px; border: 4px solid var(--cream-2);">
+            <div class="ph-icon">🍲</div>
+            <strong>Steaming hot porridge (Kanji) in a brass bowl</strong>
+            <small>Replace with your preparation photo.</small>
+          </div>
+          <div class="spec-strip">
+            <div class="spec"><div class="k">Pack Size</div><div class="v">500 Grams</div></div>
+            <div class="spec"><div class="k">Shelf Life</div><div class="v">9 Months</div></div>
+            <div class="spec"><div class="k">Suitable For</div><div class="v">Ages 1 to 99</div></div>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <div class="sub-h">🌱 Key Ingredients In Every Spoonful</div>
+            <div class="ing-grid">
+              <div class="ing"><b>Sprouted Ragi</b><span>Rich in natural Calcium</span></div>
+              <div class="ing"><b>Pearl Millet (Kambu)</b><span>Fiber &amp; Sustained Energy</span></div>
+              <div class="ing"><b>Green Gram</b><span>Easily digestible protein</span></div>
+              <div class="ing"><b>Almonds &amp; Cashews</b><span>Brain health &amp; healthy fats</span></div>
+              <div class="ing"><b>Cardamom (Elaichi)</b><span>Heartwarming aroma</span></div>
+              <div class="ing"><b>Sukku (Dry Ginger)</b><span>Aids gut digestion</span></div>
+            </div>
+          </div>
+
+          <div style="margin-top: 32px;">
+            <div class="sub-h">🥣 Simple 3-Minute Preparation</div>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div><b>Mix Smoothly</b><p>Take 2 tablespoons (approx 30g) of Arogya Health Mix. Mix into 250ml of cool water or milk without lumps.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div><b>Simmer &amp; Cook</b><p>Cook over a medium flame for 3 minutes, stirring continuously until the porridge thickens and turns glossy.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div><b>Sweet or Savoury Option</b><p>Sweet: Add jaggery, palm sugar, or honey. Savoury: Allow to cool slightly, add fresh buttermilk and rock salt!</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section class="block" id="product">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow light">Farm Direct Packaging</span>
+        <h2>Order Your Pack Today</h2>
+        <p>Every batch freshly roasted and sealed with eco-friendly freshness zip-lock.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <span class="sale-tag">30% OFF Today</span>
+          <div class="img-ph">
+            <div class="ph-icon">🛍️</div>
+            <strong>Arogya Health Mix 500g kraft pouch</strong>
+            <small>Replace with your product pouch photo.</small>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <div class="info-top">
+            <span class="sku">SKU: AG-HM-500</span>
+            <span class="stock">In Stock (Dispatches in 24 Hrs)</span>
+          </div>
+          <h3>Arogya Traditional Multigrain Health Mix</h3>
+          <div class="rating-small">
+            <span class="stars">★★★★★</span>
+            <b>4.9 / 5.0</b>
+            <span>(482 Verified Customer Reviews)</span>
+          </div>
+          <div class="price-row">
+            <span class="price-now">₹1</span>
+            <span class="price-old">₹199</span>
+            <span class="save-tag">Save ₹59</span>
+            <span class="tax-note">Taxes Included</span>
+          </div>
+          <p class="desc">500g Resealable Kraft Paper Stand-up Pouch. 100% natural without refined sugar, preservatives, artificial flavours, or emulsifiers.</p>
+
+          <div class="qty-label">Quantity (Packs of 500g):</div>
+          <div class="qty-row">
+            <div class="qty">
+              <button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+              <span id="qtyVal">1</span>
+              <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+            </div>
+            <span class="qty-hint">Recommended: 2 packs for full monthly household supply</span>
+          </div>
+
+          <div class="cta-row">
+            <button class="btn btn-dark" type="button" id="addCart">🛍️ Add To Cart</button>
+            <a class="btn btn-gold" href="#checkout" id="buyNow">Buy Now — Instant Checkout</a>
+          </div>
+
+          <div class="perks">
+            <div class="perk"><span>🚚</span>Free Delivery &gt; ₹499</div>
+            <div class="perk"><span>💵</span>Cash on Delivery</div>
+            <div class="perk"><span>🌾</span>100% Native Millets</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT (form: name, email, phone only) -->
+  <section class="block" id="checkout">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">Secure Checkout</span>
+        <h2>Almost There! Let's Get Your Order Ready.</h2>
+        <p>Fill in your details below. Pay securely via UPI.</p>
+      </div>
+
+      <form id="checkoutForm" novalidate>
+        <div class="checkout-grid">
+          <!-- Left: delivery details + payment -->
+          <div class="panel left">
+            <div class="panel-title">📍 1. Your Details</div>
+            <div class="fields">
+              <div class="field">
+                <label for="name">Full Name *</label>
+                <input id="name" name="name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="phone">Mobile Number *</label>
+                <input id="phone" name="phone" type="tel" placeholder="e.g. 9876543210" inputmode="numeric" maxlength="10" autocomplete="tel" required>
+              </div>
+              <div class="field full">
+                <label for="email">Email Address *</label>
+                <input id="email" name="email" type="email" placeholder="e.g. priya@example.com" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="pay-methods">
+              <div class="panel-title sm">💳 2. Choose Payment Method</div>
+              <label class="pay-opt">
+                <input type="radio" name="payment" value="upi" checked>
+                <div>
+                  <div class="po-title">Instant UPI (GPay / PhonePe / Paytm / QR)</div>
+                  <div class="po-sub">Fastest checkout &amp; zero transaction fees</div>
+                </div>
+                <span class="fastest">Fastest</span>
+              </label>
+              <label class="pay-opt">
+                <input type="radio" name="payment" value="card">
+                <div>
+                  <div class="po-title">Credit / Debit Card / Net Banking</div>
+                  <div class="po-sub">All major Indian banks &amp; Rupay / Visa / Mastercard</div>
+                </div>
+              </label>
+              <label class="pay-opt">
+                <input type="radio" name="payment" value="cod">
+                <div>
+                  <div class="po-title">Cash on Delivery (COD)</div>
+                  <div class="po-sub">Pay cash or UPI at your doorstep</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Right: order summary -->
+          <div class="panel right">
+            <div class="panel-title sm" style="border-bottom:1px solid var(--border);">Order Summary</div>
+            <div class="sum-row" style="border-bottom:1px solid var(--border); padding-bottom:14px;">
+              <span>Arogya Sathu Maavu (500g)</span><b>1 × ₹1</b>
+            </div>
+            <div class="sum-row"><span>Subtotal</span><b>₹1</b></div>
+            <div class="sum-row" style="border-bottom:1px solid var(--border); padding-bottom:14px;">
+              <span>Delivery Charges <span class="tiny">This week</span></span><b>FREE</b>
+            </div>
+
+            <div class="coupon-label">Have a coupon?</div>
+            <div class="coupon-row">
+              <input type="text" value="TRY: HEALTH10" aria-label="Coupon code">
+              <button type="button">Apply</button>
+            </div>
+
+            <div class="free-banner">
+              <div class="row"><span>FREE delivery on all orders this week!</span><span>100%</span></div>
+              <div class="bar"><i></i></div>
+            </div>
+
+            <div class="total"><span class="t1">Total Payable:</span><span class="t2">₹1</span></div>
+
+            <button class="pay-btn" type="submit" id="payBtn">Pay ₹1 — Complete Order</button>
+            <div class="status" id="status" role="status" aria-live="polite"></div>
+            <div class="secure">🔒 256-Bit Bank-grade Encrypted Checkout &amp; Easy Returns</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="block" id="reviews">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow light">Community Love</span>
+        <h2>Your Experience Matters to Us!</h2>
+        <p>Real reviews from genuine families who start their mornings with Arogya Health Mix.</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="big">4.9 / 5</div><div class="stars" style="font-size:16px;">★★★★★</div><div class="lbl">Overall Product Rating</div></div>
+        <div class="stat"><div class="big">98%</div><div class="gold-lbl">Recommendation Rate</div><div class="lbl">Based on post-purchase feedback</div></div>
+        <div class="stat"><div class="big">1,200+</div><div class="gold-lbl">Monthly Repeat Orders</div><div class="lbl">Trusted across all Indian states</div></div>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review">
+          <div class="review-top"><span class="stars">★★★★★</span><span class="verified">✓ Verified Buyer</span></div>
+          <p class="quote">"Reminds me of my grandmother's homemade Sathu Maavu. The cardamom aroma is incredible and my 4-year-old drinks it every morning with warm milk and jaggery without any complaints!"</p>
+          <div class="reviewer"><div class="avatar">PV</div><div><b>Priya Venkatesh</b><span>Chennai, Tamil Nadu</span></div></div>
+        </div>
+        <div class="review">
+          <div class="review-top"><span class="stars">★★★★★</span><span class="verified">✓ Verified Buyer</span></div>
+          <p class="quote">"Best breakfast replacement for busy office days. Just 3 minutes in a saucepan, add pinch of rock salt and buttermilk. Extremely nutritious, filling for 4 hours, and authentic taste."</p>
+          <div class="reviewer"><div class="avatar">RS</div><div><b>Rajesh Sharma</b><span>Bengaluru, Karnataka</span></div></div>
+        </div>
+        <div class="review">
+          <div class="review-top"><span class="stars">★★★★★</span><span class="verified">✓ Verified Buyer</span></div>
+          <p class="quote">"Great aroma of roasted millets, almond bits, and cardamom. No artificial sugar, completely authentic texture and very gentle on the stomach. Ordering two more 500g packs!"</p>
+          <div class="reviewer"><div class="avatar">AS</div><div><b>Ananya Sen</b><span>Hyderabad, Telangana</span></div></div>
+        </div>
+      </div>
+
+      <div class="review-form">
+        <h3>Write a Review</h3>
+        <p class="hint">Have you tasted Arogya Sathu Maavu? Help other healthy families decide!</p>
+        <div class="fields">
+          <div><label for="rvName">Your Name *</label><input id="rvName" type="text" placeholder="e.g. Kavita R."></div>
+          <div><label for="rvCity">City *</label><input id="rvCity" type="text" placeholder="e.g. Coimbatore"></div>
+        </div>
+        <div style="margin-top:16px;">
+          <label>Rating</label>
+          <div class="stars-input">★★★★★ <span style="font-size:12px;color:var(--muted);letter-spacing:0;">5.0 Stars</span></div>
+        </div>
+        <div style="margin-top:16px;">
+          <label for="rvText">Your Review *</label>
+          <textarea id="rvText" placeholder="Share how you prepare it and what you liked most..."></textarea>
+        </div>
+        <button class="btn btn-dark" type="button" id="reviewBtn">Submit Feedback</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <div class="container faq-wrap">
+      <div class="sec-head">
+        <span class="eyebrow light">Got Questions?</span>
+        <h2>We've Got Answers.</h2>
+        <p>Everything you need to know about our ingredients, ordering, and preparation.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" type="button">1. What is Health Mix (Sathu Maavu)? <span class="plus">+</span></button>
+          <div class="faq-a">Sathu Maavu is a traditional South Indian health mix made from roasted and stone-ground grains, millets, lentils, nuts and spices. It is a nourishing, ready-to-cook breakfast porridge.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">2. How can I consume the Health Mix? <span class="plus">+</span></button>
+          <div class="faq-a">Mix 2 tablespoons into 250ml of cool water or milk, cook for 3 minutes, and enjoy it sweet with jaggery or savoury with buttermilk and rock salt.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">3. What is the price of one Health Mix pack? <span class="plus">+</span></button>
+          <div class="faq-a">One 500g pack is priced at ₹140 (MRP ₹199 with current offers shown on the product card). Taxes are included.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">4. How can I place an order? <span class="plus">+</span></button>
+          <div class="faq-a">Choose your pack quantity, click Buy Now, fill in your name, mobile number and email, then complete payment via UPI or choose Cash on Delivery.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">5. Can I purchase multiple items? <span class="plus">+</span></button>
+          <div class="faq-a">Yes. Use the quantity selector to add multiple packs. We recommend 2 packs for a full monthly household supply.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">6. How will I know if my order is confirmed? <span class="plus">+</span></button>
+          <div class="faq-a">You will see a confirmation message on screen after submitting your details. Our team will also contact you on the mobile number and email you provided.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">7. How can I contact you? <span class="plus">+</span></button>
+          <div class="faq-a">Email support@arogyagrains.com or call the customer desk at +91 98765 43210. You can also chat with our nutritionist on WhatsApp.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <div class="brand-mark">🌾</div>
+          <div>
+            <div class="brand-name">Arogya Grains</div>
+            <div class="brand-sub">Traditional Health &amp; Nutrition</div>
+          </div>
+        </div>
+        <p class="foot-bio">Wholesome traditional nutrition from Indian native farms right to your home. Pure sprouted millets, roasted nuts, and heritage wellness for your entire family.</p>
+        <div class="fssai">🛡️ FSSAI License No: 10020042000123</div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#top">Home Page</a></li>
+          <li><a href="#ingredients">Our 18 Ingredients</a></li>
+          <li><a href="#product">Buy Sathu Maavu (₹140)</a></li>
+          <li><a href="#reviews">Customer Feedback</a></li>
+          <li><a href="#faq">Frequently Asked Questions</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Reach Out To Us</h4>
+        <ul>
+          <li><b>Customer Desk:</b> +91 98765 43210</li>
+          <li><b>Email:</b> support@arogyagrains.com</li>
+        </ul>
+        <div class="addr">Arogya Organics Foodworks Ltd.<br>42, Heritage Granary Road, Anna Salai,<br>Chennai, Tamil Nadu — 600002, India.</div>
+        <div class="social">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal">
+      <span>© 2025 Arogya Grains Organics. All rights reserved.</span>
+      <nav>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Shipping Policy</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a class="wa-float" href="https://wa.me/919876543210" target="_blank" rel="noopener">
+  <span class="wa-ico">💬</span><span class="wa-text">Chat with Nutritionist on WhatsApp</span>
+</a>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  /* ---------- CONFIGURATION ---------- */
+  // Google Apps Script Web App URL (from your deployment)
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvMxaJAhg6PB9RUhgqhmSbFpadiZjd4PJCY6GwjjCrsvcUBAiE1NwY8PwkBwXFDcTGpg/exec";
+
+  // GPay / UPI payment for ₹1 order, linked to 9244232425
+  const UPI_ID = "9244232425@ybl";
+  const PAYMENT_URL = "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
+                      "&pn=" + encodeURIComponent("Arogya Grains") +
+                      "&am=1&cu=INR&tn=" + encodeURIComponent("Arogya Sathu Maavu Order");
+
+  /* ---------- QUANTITY & CART ---------- */
+  let qty = 1;
+  let cartCount = 0;
+  const qtyVal = document.getElementById("qtyVal");
+  document.getElementById("qtyMinus").addEventListener("click", () => {
+    if (qty > 1) { qty--; qtyVal.textContent = qty; }
+  });
+  document.getElementById("qtyPlus").addEventListener("click", () => {
+    qty++; qtyVal.textContent = qty;
+  });
+
+  function toast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => t.classList.remove("show"), 2200);
+  }
+
+  document.getElementById("addCart").addEventListener("click", () => {
+    cartCount += qty;
+    document.getElementById("cartCount").textContent = cartCount;
+    toast(`Added ${qty} pack${qty > 1 ? "s" : ""} to cart`);
+  });
+
+  /* ---------- FAQ ACCORDION ---------- */
+  document.querySelectorAll(".faq-q").forEach(btn => {
+    btn.addEventListener("click", () => btn.parentElement.classList.toggle("open"));
+  });
+
+  /* ---------- REVIEW BUTTON (placeholder) ---------- */
+  document.getElementById("reviewBtn").addEventListener("click", () => {
+    toast("Thank you for your feedback!");
+  });
+
+  /* ---------- CHECKOUT: save to Google Sheets, then pay ---------- */
+  const form = document.getElementById("checkoutForm");
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
+  const payBtn = document.getElementById("payBtn");
+  const statusEl = document.getElementById("status");
+
+  function setStatus(msg, type) {
+    statusEl.textContent = msg;
+    statusEl.className = "status " + (type || "");
+  }
+
+  function showSuccess() {
+    setStatus("Details saved! Opening GPay to complete your ₹1 payment...", "ok");
+    payBtn.disabled = false;
+    setTimeout(() => { window.location.href = PAYMENT_URL; }, 1200);
+  }
+
+  function showError(msg) {
+    setStatus(msg || "Something went wrong. Please try again.", "err");
+    payBtn.disabled = false;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+
+    if (!name || !email || !phone) {
+      showError("Please fill in name, email and phone.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("Please enter a valid email address.");
+      return;
+    }
+    if (!/^[0-9]{10}$/.test(phone)) {
+      showError("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
+    payBtn.disabled = true;
+    setStatus("Saving your details...", "");
+
+    const url = SCRIPT_URL + "?" + new URLSearchParams({ name, email, phone });
+
+    fetch(url, { method: "GET", mode: "no-cors" })
+      .then(() => showSuccess())
+      .catch(() => showError());
+  });
+</script>
+</body>
+</html>
